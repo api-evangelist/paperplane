@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: probed
+source: live probes of /.well-known/* on Paperplane hosts
+note: >-
+  No /.well-known/ discovery documents were served. The marketing host
+  (www.paperplane.ai) fails the TLS handshake to automated clients (connection
+  error, recorded as status 000); the documentation host (docs.paperplane.ai)
+  is a GitBook site that returns 404 for every probed path. No 200 responses,
+  so no WellKnown/SecurityTxt pointer is emitted.
+hosts:
+- host: https://www.paperplane.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 000
+  - path: /.well-known/ai-plugin.json
+    status: 000
+- host: https://docs.paperplane.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404

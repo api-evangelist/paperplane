@@ -1,7 +1,29 @@
 aid: paperplane
+accessModel:
+  pricing: unknown
+  onboarding: approval
+  trial: false
+  try_now: false
+  public: false
+  label: Requires approval
+  confidence: medium
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/paperplane.png
 name: Paperplane
-description: Paperplane is a company surfaced as a portfolio company of bloomberg-beta and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Paperplane is an AI sales-productivity tool (Y Combinator W23, backed by
+  Bloomberg Beta) that automatically takes notes on sales calls and keeps a
+  rep's CRM up to date. It connects to a team's calendar and to conversational
+  intelligence and call-recording tools such as Gong and Chorus, transcribes and
+  analyzes each call, then writes the results back to Salesforce — updating
+  opportunity fields, notes, and action items so sales teams spend less time on
+  manual CRM data entry and stay on top of their deals. The product is organized
+  around opportunities, calls, and notes, with integrations for Google Calendar,
+  Gong, Chorus, and Salesforce. Paperplane is a hosted SaaS application; as of
+  this enrichment pass it exposes a product documentation site (GitBook, with an
+  llms.txt index) but no public developer API, OpenAPI definition, or SDK.
 url: https://raw.githubusercontent.com/api-evangelist/paperplane/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,9 +33,17 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
+- Sales
+- CRM
+- Salesforce
+- Sales Automation
+- Conversation Intelligence
+- Note Taking
+- Artificial Intelligence
+- Productivity
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -23,3 +53,16 @@ maintainers:
 common:
 - type: Website
   url: https://www.paperplane.ai/
+- type: Documentation
+  url: https://docs.paperplane.ai/
+- type: GettingStarted
+  url: https://docs.paperplane.ai/overview/getting-set-up
+- type: LLMsTxt
+  url: llms/paperplane-llms.txt
+- type: DomainSecurity
+  url: security/paperplane-domain-security.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: minimal
+  artifacts_added: 3
+  pass: local-v1

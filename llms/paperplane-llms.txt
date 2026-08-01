@@ -1,0 +1,20 @@
+# Paperplane
+
+## Paperplane
+
+- [Welcome to Paperplane](https://docs.paperplane.ai/welcome-to-paperplane.md)
+- [What we do](https://docs.paperplane.ai/overview/what-we-do.md)
+- [Our Features](https://docs.paperplane.ai/overview/our-features.md)
+- [Getting set up](https://docs.paperplane.ai/overview/getting-set-up.md)
+- [Connect your calendar](https://docs.paperplane.ai/overview/getting-set-up/connect-your-calendar.md)
+- [Connect with Gong](https://docs.paperplane.ai/overview/getting-set-up/connect-with-gong.md)
+- [Google Calendar](https://docs.paperplane.ai/integrations/google-calendar.md)
+- [Gong](https://docs.paperplane.ai/integrations/gong.md)
+- [Chorus](https://docs.paperplane.ai/integrations/chorus.md)
+- [Recording calls](https://docs.paperplane.ai/product-guides/recording-calls.md)
+- [Sync to Salesforce](https://docs.paperplane.ai/product-guides/sync-to-salesforce.md)
+- [Opportunities](https://docs.paperplane.ai/fundamentals/opportunities.md)
+- [Calls](https://docs.paperplane.ai/fundamentals/calls.md)
+- [Notes](https://docs.paperplane.ai/fundamentals/notes.md)
+- [For Designers](https://docs.paperplane.ai/use-cases/for-designers.md)
+- [For Developers](https://docs.paperplane.ai/use-cases/for-developers.md)
