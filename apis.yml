@@ -21,9 +21,18 @@ description: >-
   opportunity fields, notes, and action items so sales teams spend less time on
   manual CRM data entry and stay on top of their deals. The product is organized
   around opportunities, calls, and notes, with integrations for Google Calendar,
-  Gong, Chorus, and Salesforce. Paperplane is a hosted SaaS application; as of
-  this enrichment pass it exposes a product documentation site (GitBook, with an
-  llms.txt index) but no public developer API, OpenAPI definition, or SDK.
+  Gong, Chorus, and Salesforce. Paperplane appears to have wound down: Y
+  Combinator lists the company as Inactive (and now describes it as a credit
+  risk management platform for builders' merchants, so it pivoted at least once
+  before stopping), its marketing site presents no TLS certificate, its
+  application host returns a Vercel 402 DEPLOYMENT_DISABLED, and its API host is
+  an Envoy ingress that 404s every path with an empty body. Two surfaces remain
+  live: a GitBook documentation site — which is an unfilled starter template
+  carrying GitBook's own placeholder copy, last updated three years ago — with
+  an llms.txt index, and a Clerk-hosted OpenID Connect identity instance at
+  clerk.paperplane.ai that still serves real OIDC and RFC 8414 discovery
+  documents. There is no public developer API, OpenAPI definition, SDK, MCP
+  server, or agent card.
 url: https://raw.githubusercontent.com/api-evangelist/paperplane/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -33,7 +42,7 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-08-13'
 tags:
 - Company
 - Sales
@@ -61,8 +70,40 @@ common:
   url: llms/paperplane-llms.txt
 - type: DomainSecurity
   url: security/paperplane-domain-security.yml
+- type: WellKnown
+  url: well-known/paperplane-well-known.yml
+- type: Authentication
+  url: authentication/paperplane-authentication.yml
+- type: OAuthScopes
+  url: scopes/paperplane-scopes.yml
+- type: Conformance
+  url: conformance/paperplane-conformance.yml
+- type: Lifecycle
+  url: lifecycle/paperplane-lifecycle.yml
 x-enrichment:
-  date: '2026-07-20'
+  date: '2026-08-13'
   status: minimal
-  artifacts_added: 3
+  artifacts_added: 6
   pass: local-v1
+x-coverage:
+  state: none
+  reason: defunct
+  detail: >-
+    Paperplane has wound down — Y Combinator lists the W23 company as Inactive,
+    app.paperplane.ai returns Vercel 402 DEPLOYMENT_DISABLED, api.paperplane.ai
+    is an Envoy ingress that 404s every path with an empty body, and
+    www.paperplane.ai presents no TLS certificate at all; the only live surfaces
+    are a never-completed GitBook template (still carrying GitBook's own
+    placeholder copy) and a Clerk OIDC instance at clerk.paperplane.ai.
+  evidence:
+  - url: https://www.ycombinator.com/companies/paperplane
+    status: 200
+  - url: https://app.paperplane.ai/
+    status: 402
+  - url: https://api.paperplane.ai/openapi.json
+    status: 404
+  - url: https://www.paperplane.ai/
+    status: 000
+  - url: https://clerk.paperplane.ai/.well-known/openid-configuration
+    status: 200
+  checked: '2026-08-13'
