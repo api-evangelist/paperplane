@@ -1,0 +1,41 @@
+generated: '2026-08-13'
+method: probed
+source: https://clerk.paperplane.ai/.well-known/openid-configuration
+docs: null
+note: >-
+  Read verbatim from scopes_supported in the live OIDC discovery document and
+  the RFC 8414 metadata document served by Paperplane's own Clerk identity
+  instance (issuer https://clerk.paperplane.ai). Paperplane publishes no scope
+  reference page of its own — its documentation site is an unfilled GitBook
+  starter template — so descriptions below are the standard OIDC/Clerk
+  meanings of each scope name, marked as such, and are NOT quoted from
+  Paperplane copy. derive-oauth-scopes.py found nothing because there is no
+  OpenAPI in this repo to derive from; every value here came off the wire.
+  These are end-user identity scopes for the Paperplane application, not
+  scopes on a public developer API — Paperplane does not publish one.
+flows:
+- authorization_code
+- refresh_token
+scope_count: 7
+scopes:
+- name: openid
+  description: Standard OIDC scope requesting an ID token.
+  source: oidc-standard
+- name: profile
+  description: Standard OIDC scope for basic profile claims (name, given_name, family_name, preferred_username, picture).
+  source: oidc-standard
+- name: email
+  description: Standard OIDC scope for the email and email_verified claims.
+  source: oidc-standard
+- name: offline_access
+  description: Standard OIDC scope requesting a refresh token for access outside an active session.
+  source: oidc-standard
+- name: public_metadata
+  description: Clerk scope granting read access to the user's public metadata object.
+  source: clerk-platform
+- name: private_metadata
+  description: Clerk scope granting read access to the user's private metadata object.
+  source: clerk-platform
+- name: user:org:read
+  description: Clerk scope granting read access to the user's organization membership (backs the org_id claim).
+  source: clerk-platform

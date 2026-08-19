@@ -1,0 +1,15 @@
+generated: '2026-08-13'
+method: probed
+source: https://www.paperplane.ai/
+plan_count: 0
+plans: []
+note: >-
+  No pricing could be read, and the reason is not that Paperplane hides it —
+  the marketing site that would carry it is off the air. https://www.paperplane.ai/
+  and the apex https://paperplane.ai/ both fail the TLS handshake with no
+  certificate presented (recorded as status 000), and the Internet Archive holds
+  no capture of the site after 2025-03-10. The documentation host that is still
+  up (docs.paperplane.ai, HTTP 200) is an unfilled GitBook starter template with
+  no pricing page. No Plans pointer is wired into apis.yml: a zero-plan file
+  documents an absence and must not be scored as a published pricing surface.
+  See lifecycle/paperplane-lifecycle.yml.

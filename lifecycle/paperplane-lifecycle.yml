@@ -1,0 +1,81 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  live probes of every paperplane.ai host on 2026-08-13, plus
+  https://www.ycombinator.com/companies/paperplane and the Internet Archive CDX
+  index for paperplane.ai
+note: >-
+  Paperplane publishes no versioning policy, no deprecation policy, no SLA and
+  no status page — there is nothing to search for, because there is no API. What
+  this artifact records instead is the operational state of the company's own
+  surfaces, which is the single most load-bearing fact about this profile:
+  every Paperplane-operated host except the documentation site and the identity
+  instance is off. No StatusPage or Deprecation pointer is emitted, because
+  Paperplane published neither; these are OUR probe findings, not the
+  provider's declarations.
+service_status: likely-discontinued
+service_status_confidence: high
+versioning_policy: none-published
+deprecation_policy: none-published
+sunset_header_support: unknown
+sla: none-published
+status_page: none-published
+evidence:
+- observation: Y Combinator lists Paperplane (W23) as Inactive on its own company directory page.
+  url: https://www.ycombinator.com/companies/paperplane
+  status: 200
+  detail: >-
+    The page also now describes the company as a "Credit risk management
+    platform for builders' merchants", a different product from the
+    sales-notes-to-Salesforce tool the documentation site describes — so the
+    company pivoted at least once before going inactive.
+- observation: Application host is disabled for non-payment.
+  url: https://app.paperplane.ai/
+  status: 402
+  detail: 'Vercel, header x-vercel-error: DEPLOYMENT_DISABLED, body "Payment required".'
+- observation: API host is an orphaned ingress with no routes.
+  url: https://api.paperplane.ai/
+  status: 404
+  detail: >-
+    server: envoy, content-length 0 on every path probed (/, /graphql, /api,
+    /health, /v1, /openapi.json, /swagger.json, /docs, /mcp). The site root
+    intermittently returns 503 "upstream connect error or disconnect/reset
+    before headers. reset reason: connection failure", i.e. the ingress is up
+    and the backend behind it is gone.
+- observation: Marketing site presents no TLS certificate.
+  url: https://www.paperplane.ai/
+  status: 000
+  detail: >-
+    CNAME to proxy-ssl.webflow.com; the handshake fails with
+    SSLV3_ALERT_HANDSHAKE_FAILURE (apex fails with tlsv1 alert internal error)
+    against both LibreSSL and OpenSSL. Plain HTTP 301s to the HTTPS URL that
+    cannot be completed. Consistent with a Webflow site that has been
+    unpublished or whose custom-domain certificate was never renewed.
+- observation: Internet Archive holds no capture of www.paperplane.ai after early 2025.
+  url: https://web.archive.org/cdx/search/cdx?url=paperplane.ai&matchType=domain&filter=statuscode:200&from=2025
+  status: 200
+  detail: >-
+    Last 200 captures of the marketing site are 2025-01-13, 2025-02-03 and
+    2025-03-10; accounts.paperplane.ai and clerk.paperplane.ai were captured in
+    early 2025 and docs.paperplane.ai in April 2025. Nothing in 2026.
+- observation: Documentation site is a never-completed GitBook starter template.
+  url: https://docs.paperplane.ai/
+  status: 200
+  detail: >-
+    Pages still carry GitBook's own placeholder copy ("GitBook tip: your product
+    docs aren't just a reference of all your features!"), sample overviews
+    lifted from the Loom and Mailchimp docs, "Awesome Feature One/Two/Three",
+    and lorem ipsum under a "GitHub Integrations" heading on the For Developers
+    page. Several pages (Gong, Sync to Salesforce, Opportunities, Calls, Notes)
+    are an H1 and nothing else. Footer reads "Last updated 3 years ago".
+still_serving:
+- host: docs.paperplane.ai
+  what: GitBook documentation site plus /llms.txt and per-page .md renditions
+  status: 200
+- host: clerk.paperplane.ai
+  what: Clerk-hosted OIDC/OAuth 2.0 identity instance (discovery documents + JWKS)
+  status: 200
+- host: accounts.paperplane.ai
+  what: Clerk hosted account pages, behind a Cloudflare interstitial
+  status: 403
+deprecated_operations: []

@@ -1,20 +1,62 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: probed
-source: live probes of /.well-known/* on Paperplane hosts
+source: live probes of /.well-known/* on every Paperplane host
 note: >-
-  No /.well-known/ discovery documents were served. The marketing host
-  (www.paperplane.ai) fails the TLS handshake to automated clients (connection
-  error, recorded as status 000); the documentation host (docs.paperplane.ai)
-  is a GitBook site that returns 404 for every probed path. No 200 responses,
-  so no WellKnown/SecurityTxt pointer is emitted.
+  Round 2 found real documents that round 1 missed. The marketing host
+  (www.paperplane.ai, a Webflow proxy) and the apex still fail the TLS
+  handshake outright, the application host (app.paperplane.ai) returns
+  Vercel 402 DEPLOYMENT_DISABLED for every path, the API host
+  (api.paperplane.ai) is an orphaned Envoy ingress that 404s every path with
+  a zero-length body, and the GitBook documentation host 404s every
+  /.well-known/* path (its 404 body is the ~150KB SPA shell, which is NOT a
+  document). The one live surface is clerk.paperplane.ai, Paperplane's own
+  Clerk-hosted identity instance, which serves a genuine OIDC discovery
+  document, an OAuth 2.0 Authorization Server Metadata document (RFC 8414)
+  and a JWKS. OWNERSHIP: the issuer in both documents is
+  https://clerk.paperplane.ai — Paperplane's own subdomain, CNAMEd to
+  frontend-api.clerk.services — and the instance id is
+  ins_2eXpXIGIP45PViegvGGdEfVfHcf. Clerk operates the software; the instance
+  is Paperplane's. service_documentation and op_tos_uri point at clerk.com
+  because the metadata is Clerk-generated boilerplate, not Paperplane-authored
+  prose. A WellKnown pointer is emitted because three paths returned real
+  200 documents. No SecurityTxt pointer: security.txt 404s on every host.
 hosts:
-- host: https://www.paperplane.ai
+- host: https://clerk.paperplane.ai
   documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: application/json
+    file: well-known/paperplane-clerk-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: well-known/paperplane-clerk-oauth-authorization-server.json
+  - path: /.well-known/jwks.json
+    status: 200
+    content_type: application/json
+    file: well-known/paperplane-clerk-jwks.json
+  - path: /.well-known/assetlinks.json
+    status: 200
+    content_type: application/json
+    note: empty JSON array, not a document
+  - path: /.well-known/apple-app-site-association
+    status: 200
+    content_type: application/json
+    note: empty JSON object, not a document
   - path: /.well-known/security.txt
-    status: 000
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
   - path: /.well-known/ai-plugin.json
-    status: 000
-- host: https://docs.paperplane.ai
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://api.paperplane.ai
+  note: Envoy ingress with no routes; every path 404s with content-length 0
   documents:
   - path: /.well-known/security.txt
     status: 404
@@ -22,5 +64,70 @@ hosts:
     status: 404
   - path: /.well-known/oauth-authorization-server
     status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
   - path: /.well-known/api-catalog
     status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://docs.paperplane.ai
+  note: >-
+    GitBook SPA. Every 404 returns a ~150KB HTML shell — recorded as a miss,
+    never as a document.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://app.paperplane.ai
+  note: >-
+    Vercel deployment disabled — x-vercel-error DEPLOYMENT_DISABLED, HTTP 402
+    Payment Required on every path including the site root.
+  documents:
+  - path: /.well-known/security.txt
+    status: 402
+  - path: /.well-known/openid-configuration
+    status: 402
+  - path: /.well-known/oauth-authorization-server
+    status: 402
+  - path: /.well-known/api-catalog
+    status: 402
+  - path: /.well-known/ai-plugin.json
+    status: 402
+  - path: /.well-known/agent-card.json
+    status: 402
+  - path: /.well-known/agent.json
+    status: 402
+- host: https://www.paperplane.ai
+  note: >-
+    TLS handshake failure (SSLV3_ALERT_HANDSHAKE_FAILURE) against both
+    LibreSSL and OpenSSL/Python — no certificate is presented. Recorded as
+    status 000. Plain HTTP 301s to the HTTPS URL that cannot be completed.
+  documents:
+  - path: /.well-known/security.txt
+    status: 000
+  - path: /.well-known/ai-plugin.json
+    status: 000
+- host: https://paperplane.ai
+  note: >-
+    Apex resolves to AWS Global Accelerator addresses and answers the TLS
+    ClientHello with tlsv1 alert internal error. Recorded as status 000.
+  documents:
+  - path: /.well-known/security.txt
+    status: 000

@@ -1,0 +1,59 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  https://clerk.paperplane.ai/.well-known/openid-configuration,
+  https://clerk.paperplane.ai/.well-known/oauth-authorization-server,
+  https://clerk.paperplane.ai/.well-known/jwks.json
+note: >-
+  Paperplane publishes no OpenAPI, no vocabulary and no compliance claims of
+  its own, so every assertion below is read off the live discovery documents
+  on Paperplane's own Clerk identity instance, or recorded as a negative. No
+  Compliance pointer is emitted: no certification (SOC 2, ISO 27001, PCI,
+  HIPAA, FedRAMP) is published anywhere reachable, and
+  probe-security-programs.py returned vdp=none trust=none.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    RFC 8414 Authorization Server Metadata served at
+    https://clerk.paperplane.ai/.well-known/oauth-authorization-server (HTTP
+    200, application/json) declaring issuer, authorization_endpoint,
+    token_endpoint, revocation_endpoint and jwks_uri, with grant types
+    authorization_code and refresh_token.
+- id: oidc
+  conforms: true
+  evidence: >-
+    OpenID Provider Configuration served at
+    https://clerk.paperplane.ai/.well-known/openid-configuration (HTTP 200)
+    with userinfo_endpoint, id_token_signing_alg_values_supported RS256,
+    subject_types_supported public and a claims_supported set including sub,
+    iss, aud, exp, iat, email and org_id.
+- id: pkce
+  conforms: true
+  evidence: code_challenge_methods_supported ["S256"] in both discovery documents.
+- id: jwks
+  conforms: true
+  evidence: >-
+    RFC 7517 JSON Web Key Set at
+    https://clerk.paperplane.ai/.well-known/jwks.json (HTTP 200) publishing one
+    RS256 signing key, kid ins_2eXpXIGIP45PViegvGGdEfVfHcf.
+- id: rfc9116
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on every reachable Paperplane host.
+- id: rfc9457
+  conforms: false
+  evidence: No API and no OpenAPI published, so no application/problem+json responses can be observed.
+- id: pagination
+  conforms: unknown
+  evidence: No public API surface to observe.
+- id: idempotency
+  conforms: unknown
+  evidence: No public API surface to observe.
+- id: a2a
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json 404 on every reachable host.
+- id: mcp
+  conforms: false
+  evidence: No MCP endpoint found; /mcp 404s on api.paperplane.ai and docs.paperplane.ai.
+certifications: []
+compliance_programs: []

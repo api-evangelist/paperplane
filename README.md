@@ -42,6 +42,8 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Paperplane is a company surfaced as a portfolio company of bloomberg-beta and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Paperplane is a company surfaced as a portfolio company of bloomberg-beta and added to the API Evangelist network as a stub for enrichment.
+
+The enrichment pipeline ran against Paperplane on 2026-08-13 and found the company has wound down. Y Combinator lists the W23 company as Inactive, `www.paperplane.ai` presents no TLS certificate, `app.paperplane.ai` returns a Vercel `402 DEPLOYMENT_DISABLED`, and `api.paperplane.ai` is an Envoy ingress that 404s every path with an empty body. Two surfaces are still live: a GitBook documentation site at `docs.paperplane.ai` (an unfilled starter template, last updated three years ago, still carrying GitBook's own placeholder copy) with an `llms.txt` index, and a Clerk-hosted OpenID Connect identity instance at `clerk.paperplane.ai` that serves real OIDC and RFC 8414 discovery documents. There is no public developer API, OpenAPI definition, SDK, MCP server, or agent card. See `lifecycle/paperplane-lifecycle.yml` for the probe evidence.
 
 Backed by: bloomberg-beta — https://www.paperplane.ai/

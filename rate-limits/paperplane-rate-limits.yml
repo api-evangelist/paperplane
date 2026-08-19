@@ -1,0 +1,15 @@
+generated: '2026-08-13'
+method: probed
+source: https://api.paperplane.ai/
+limit_count: 0
+limits: []
+response_headers: []
+exhaustion_status: null
+note: >-
+  Paperplane documents no rate limits because it publishes no API. The host
+  named for one, api.paperplane.ai, is an orphaned Envoy ingress: every path
+  probed returns HTTP 404 with content-length 0 and no rate-limit headers of
+  any kind, and the root intermittently returns 503 "upstream connect error or
+  disconnect/reset before headers". No RateLimits pointer is wired into
+  apis.yml: a zero-limit file records an absence and must not be scored as a
+  published runtime rate-limit signal. See lifecycle/paperplane-lifecycle.yml.

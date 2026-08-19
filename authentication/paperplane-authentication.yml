@@ -1,0 +1,78 @@
+generated: '2026-08-13'
+method: probed
+source: https://clerk.paperplane.ai/.well-known/openid-configuration
+scope_note: >-
+  Paperplane publishes no public developer API and no OpenAPI, so there is no
+  spec securitySchemes block to derive from. This profile is read verbatim from
+  the live OIDC discovery document and the RFC 8414 OAuth 2.0 Authorization
+  Server Metadata document served at clerk.paperplane.ai — Paperplane's own
+  Clerk-hosted identity instance (issuer https://clerk.paperplane.ai, instance
+  ins_2eXpXIGIP45PViegvGGdEfVfHcf, CNAME frontend-api.clerk.services). This
+  documents how identities authenticate to the Paperplane application, NOT how
+  a third-party developer would authenticate against a public Paperplane API,
+  because no such API is published. Note also that the application this
+  identity server fronts is currently offline (app.paperplane.ai returns
+  Vercel 402 DEPLOYMENT_DISABLED) — see lifecycle/paperplane-lifecycle.yml.
+schemes:
+- id: paperplane-clerk-oidc
+  type: openIdConnect
+  name: Clerk-hosted OpenID Connect
+  issuer: https://clerk.paperplane.ai
+  openid_connect_url: https://clerk.paperplane.ai/.well-known/openid-configuration
+  oauth_metadata_url: https://clerk.paperplane.ai/.well-known/oauth-authorization-server
+  endpoints:
+    authorization: https://clerk.paperplane.ai/oauth/authorize
+    token: https://clerk.paperplane.ai/oauth/token
+    revocation: https://clerk.paperplane.ai/oauth/token/revoke
+    introspection: https://clerk.paperplane.ai/oauth/token_info
+    userinfo: https://clerk.paperplane.ai/oauth/userinfo
+    jwks: https://clerk.paperplane.ai/.well-known/jwks.json
+  flows:
+  - authorization_code
+  - refresh_token
+  pkce:
+    required: unknown
+    code_challenge_methods:
+    - S256
+  response_types:
+  - code
+  response_modes:
+  - form_post
+  - query
+  token_endpoint_auth_methods:
+  - client_secret_basic
+  - client_secret_post
+  - none
+  id_token_signing_alg:
+  - RS256
+  subject_types:
+  - public
+  claims:
+  - sub
+  - iss
+  - aud
+  - exp
+  - iat
+  - name
+  - given_name
+  - family_name
+  - preferred_username
+  - picture
+  - email
+  - email_verified
+  - org_id
+  scopes_ref: scopes/paperplane-scopes.yml
+  logout:
+    backchannel_supported: false
+    frontchannel_supported: false
+api_key_auth: none-published
+mutual_tls: none-published
+docs: null
+docs_note: >-
+  Paperplane publishes no authentication documentation of its own. The GitBook
+  documentation site at docs.paperplane.ai is an unfilled GitBook starter
+  template (lorem ipsum bodies, "Awesome Feature One", last updated three years
+  ago) and contains no auth page. The only prose reference the discovery
+  document itself carries is Clerk's generic
+  https://clerk.com/docs/oauth/scoped-access, which is the vendor's
+  documentation, not Paperplane's.
