@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/paperplane/integrations
+- https://n8n.io/integrations/paperplane/
+- https://composio.dev/toolkits/paperplane
+- https://monid.ai/tools/paperplane
+checked:
+- https://composio.dev/toolkits/paperplane
+- https://monid.ai/tools/paperplane
+- https://n8n.io/integrations/paperplane/
+- https://zapier.com/apps/paperplane/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
