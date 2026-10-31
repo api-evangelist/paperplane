@@ -64,8 +64,100 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Paperplane is a company surfaced as a portfolio company of bloomberg-beta and added to the API Evangelist network as a stub for enrichment.
+Paperplane is an AI sales-productivity tool (Y Combinator W23, backed by Bloomberg Beta) that automatically takes notes on sales calls and keeps a rep's CRM up to date. It connects to a team's calendar and to conversational intelligence and call-recording tools such as Gong and Chorus, transcribes and analyzes each call, then writes the results back to Salesforce — updating opportunity fields, notes, and action items so sales teams spend less time on manual CRM data entry and stay on top of their deals. The product is organized around opportunities, calls, and notes, with integrations for Google Calendar, Gong, Chorus, and Salesforce. Paperplane appears to have wound down: Y Combinator lists the company as Inactive (and now describes it as a credit risk management platform for builders' merchants, so it pivoted at least once before stopping), its marketing site presents no TLS certificate, its application host returns a Vercel 402 DEPLOYMENT_DISABLED, and its API host is an Envoy ingress that 404s every path with an empty body. Two surfaces remain live: a GitBook documentation site — which is an unfilled starter template carrying GitBook's own placeholder copy, last updated three years ago — with an llms.txt index, and a Clerk-hosted OpenID Connect identity instance at clerk.paperplane.ai that still serves real OIDC and RFC 8414 discovery documents. There is no public developer API, OpenAPI definition, SDK, MCP server, or agent card.
 
-The enrichment pipeline ran against Paperplane on 2026-08-13 and found the company has wound down. Y Combinator lists the W23 company as Inactive, `www.paperplane.ai` presents no TLS certificate, `app.paperplane.ai` returns a Vercel `402 DEPLOYMENT_DISABLED`, and `api.paperplane.ai` is an Envoy ingress that 404s every path with an empty body. Two surfaces are still live: a GitBook documentation site at `docs.paperplane.ai` (an unfilled starter template, last updated three years ago, still carrying GitBook's own placeholder copy) with an `llms.txt` index, and a Clerk-hosted OpenID Connect identity instance at `clerk.paperplane.ai` that serves real OIDC and RFC 8414 discovery documents. There is no public developer API, OpenAPI definition, SDK, MCP server, or agent card. See `lifecycle/paperplane-lifecycle.yml` for the probe evidence.
+**Areas:** Company · Sales · CRM · Salesforce · Sales Automation · Conversation Intelligence · Note Taking · Artificial Intelligence · Productivity
 
-Backed by: bloomberg-beta — https://www.paperplane.ai/
+## Paperplane on APIs.io
+
+Everything profiled for Paperplane is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/paperplane/](https://apis.io/providers/paperplane/)** — or go straight to one of the APIs or properties below.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Paperplane Authentication](https://apis.io/security/paperplane/paperplane-authentication/)
+- [Paperplane Domain Security](https://apis.io/security/paperplane/paperplane-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Paperplane Scopes](https://apis.io/scopes/paperplane/paperplane-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Paperplane Plans Pricing](https://apis.io/plans/paperplane/paperplane-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Paperplane Rate Limits](https://apis.io/rate-limits/paperplane/paperplane-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.paperplane.ai/)
+- [Documentation](https://docs.paperplane.ai/)
+- [Getting started](https://docs.paperplane.ai/overview/getting-set-up)
+
+## API Evangelist rating
+
+**Kin Score 15.8** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 55.4 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 0.0 |
+
+**Agent readiness 13.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/paperplane/](https://apis.io/providers/paperplane/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Paperplane: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/paperplane/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
